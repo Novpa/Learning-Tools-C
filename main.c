@@ -2,11 +2,14 @@
 #include <stdlib.h>
 
 
+int increment();
 int  main(){
 
-int total;
-total = increment();
-printf("%d\n", total);
+int value;
+value = increment();
+value = increment();
+value = increment();
+printf("%d\n", value);
 
 return 0;
 }
