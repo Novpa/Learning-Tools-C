@@ -1,4 +1,4 @@
-int count = 0;
+int count;
 int increment(){
   count++;
   return count;
