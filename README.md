@@ -1,8 +1,5 @@
 ## To-C-Shop
-<<<<<<< HEAD
 
-=======
->>>>>>> 1db7575cecc55abeeb6cc781766c4f6279736df5
 Welcome to To-C-Shop! This is a simple console-based shopping list manager implemented in C. This program allows you to efficiently manage your shopping list with options to add items, show the list, and more.
 
 ## Features
