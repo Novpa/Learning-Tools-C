@@ -9,7 +9,7 @@ void clearInputBuffer() {
 }
 
 //Remove the new line if exist function:
-void remove_newline(char *str) {
+void removeNewline(char *str) {
     size_t len = strlen(str);
     if (len > 0 && str[len-1] == '\n') {
         str[len-1] = '\0';
@@ -17,8 +17,29 @@ void remove_newline(char *str) {
 }
 
 //Clear console function: 
-void clear_console() {
+void clearConsole() {
     system("cls");
+}
+
+//Welcome message function: 
+void printWelcomeMessage() {
+    printf("*********************************************************\n");
+    printf("*                                                       *\n");
+    printf("*                  W E L C O M E  T O                   *\n");
+    printf("*                                                       *\n");
+    printf("*                  T o - C - S h o p                    *\n");
+    printf("*                                                       *\n");
+    printf("*        Manage your shopping list efficiently!         *\n");
+    printf("*                                                       *\n");
+    printf("*    +---------------------------------------------+    *\n");
+    printf("*    | 1. Add list                                 |    *\n");
+    printf("*    | 2. Show list                                |    *\n");
+    printf("*    | 3. Remove list / Mark                       |    *\n");
+    printf("*    | 4. Search list                              |    *\n");
+    printf("*    | 5. Exit                                     |    *\n");
+    printf("*    +---------------------------------------------+    *\n");
+    printf("*                                                       *\n");
+    printf("*********************************************************\n");
 }
 
 typedef struct shoppingInput
@@ -30,26 +51,53 @@ typedef struct shoppingInput
 }Shopping;
 
 Shopping inputFunction (){
+  int mainMenu;
   Shopping data;
+  printf("\n");
   printf("Total item: ");
   scanf("%d", &data.numberOfItem);
   clearInputBuffer();
   printf("Name of item: ");
   fgets(data.nameOfItem, sizeof(data.nameOfItem), stdin);
-  remove_newline(data.nameOfItem);
+  removeNewline(data.nameOfItem);
   printf("Input approx. Price of item: ");
   scanf("%d", &data.priceOfItem);
+  printf("\\n");
+  printf("Your list has been added! Press 0 to Menu...");
+  scanf("%d", &mainMenu);
   return data;
 }
 
 void printOutput (Shopping data){
-  clear_console();
+  clearConsole();
   printf("%d %s %d", data.numberOfItem, data.nameOfItem, data.priceOfItem);
 }
 
+
+
+
 int  main(){
+//Variable:
+int optionNumber;
 Shopping datas;
-datas = inputFunction();
-printOutput(datas);
+
+do{
+clearConsole();
+printWelcomeMessage();
+printf("Enter your option: ");
+scanf("%d", &optionNumber);
+clearConsole();
+
+  switch(optionNumber){
+    case 1: 
+    datas = inputFunction();
+    break; 
+
+    case 2: 
+    printOutput(datas);
+
+  }
+}while (optionNumber != 0);
+
 return 0;
 }
