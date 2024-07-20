@@ -50,54 +50,74 @@ typedef struct shoppingInput
   int totalPriceOfItem;
 }Shopping;
 
-Shopping inputFunction (){
-  int mainMenu;
-  Shopping data;
+void inputFunction (Shopping *data){
+  clearConsole();
   printf("\n");
   printf("Total item: ");
-  scanf("%d", &data.numberOfItem);
+  scanf("%d", &data->numberOfItem);
+
+  if(data->numberOfItem == 0){
+    return;
+  }
+
   clearInputBuffer();
   printf("Name of item: ");
-  fgets(data.nameOfItem, sizeof(data.nameOfItem), stdin);
-  removeNewline(data.nameOfItem);
+  fgets(data->nameOfItem, sizeof(data->nameOfItem), stdin);
+  removeNewline(data->nameOfItem);
   printf("Input approx. Price of item: ");
-  scanf("%d", &data.priceOfItem);
-  printf("\\n");
-  printf("Your list has been added! Press 0 to Menu...");
-  scanf("%d", &mainMenu);
-  return data;
+  scanf("%d", &data->priceOfItem);
+  printf("\n");
 }
 
-void printOutput (Shopping data){
+void printOutput (Shopping *data, int currentSize){
   clearConsole();
-  printf("%d %s %d", data.numberOfItem, data.nameOfItem, data.priceOfItem);
+  for(int i = 0; i < currentSize; i++){
+    printf("-> %d %s %d\n", data[i].numberOfItem, data[i].nameOfItem, data[i].priceOfItem);
+  }
 }
 
+//Malloc function:
+void memorryAllocation (Shopping **shoppingData, int currentSize){
+  *shoppingData = (Shopping*)malloc(currentSize * sizeof(Shopping));
+  if(*shoppingData == NULL){
+    printf("Memory allocation failed\n");
+        exit(1);
+  }
+}
 
-
+//Realloc function:
+void memorryReallocation (Shopping **shoppingData, int size){
+  *shoppingData = (Shopping*)realloc(*shoppingData, size * sizeof(Shopping));
+  if(*shoppingData == NULL){
+    printf("Memory reallocation failed\n");
+        exit(1);
+  }
+}
 
 int  main(){
-//Variable:
-int optionNumber;
-Shopping datas;
 
-do{
-clearConsole();
-printWelcomeMessage();
-printf("Enter your option: ");
-scanf("%d", &optionNumber);
-clearConsole();
+Shopping *shoppingData = NULL;
+int size = 1;
+int currentSize = 0;
 
-  switch(optionNumber){
-    case 1: 
-    datas = inputFunction();
-    break; 
+memorryAllocation(&shoppingData, size);
 
-    case 2: 
-    printOutput(datas);
+while(1){
+if(currentSize == size){
+  size *= 2;
+  memorryReallocation(&shoppingData, size);
+}
 
-  }
-}while (optionNumber != 0);
+inputFunction(&shoppingData[currentSize]);
+
+if(shoppingData[currentSize].numberOfItem == 0) break;
+currentSize++;
+}
+
+printOutput(shoppingData, currentSize);
+
+free(shoppingData);
+shoppingData = NULL;
 
 return 0;
 }
