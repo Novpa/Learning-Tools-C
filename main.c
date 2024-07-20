@@ -2,15 +2,21 @@
 #include <stdlib.h>
 
 
-int increment();
+
+typedef struct shoppingInput
+{
+  int numberOfItem;
+  char nameOfItem[265];
+  int priceOfitem;
+  int totalPriceOfItem;
+}Shopping;
+
+Shopping inputFunction (){
+  
+}
+
 int  main(){
 
-int value;
-value = increment();
-value = increment();
-value = increment();
-printf("%d\n", value);
-scanf("%d", &value);
 
 return 0;
 }
