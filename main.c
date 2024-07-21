@@ -1,7 +1,5 @@
 #include <stdio.h>
-
 #include <string.h>
-
 #include <stdlib.h>
 
 //Clear the buffer function:
@@ -37,7 +35,6 @@ Shopping;
 void inputFunction(Shopping * data) {
   clearConsole();
   printf("\n");
-  printf("*** Press 0 to Exit ***\n\n");
   printf("Total item: ");
   scanf("%d", & data -> numberOfItem);
 
@@ -49,7 +46,7 @@ void inputFunction(Shopping * data) {
   printf("Name of item: ");
   fgets(data -> nameOfItem, sizeof(data -> nameOfItem), stdin);
   removeNewline(data -> nameOfItem);
-  printf("Input approx. Price of item: ");
+  printf("Input price of item: ");
   scanf("%d", & data -> priceOfItem);
   printf("\n");
 }
@@ -88,44 +85,43 @@ int main() {
   int currentSize = 0;
   int option, next;
   //Option function
-  do{
+  memorryAllocation( & shoppingData, size);
+  do {
     int optionMainMenu(int option) {
+      clearConsole();
       printWelcomeMessage();
       printf("Chose the menu: ");
       scanf("%d", & option);
       switch (option) {
       case 1:
-        memorryAllocation( & shoppingData, size);
 
-        while (1) {
-          if (currentSize == size) {
-            size *= 2;
-            memorryReallocation( & shoppingData, size);
-          }
-
-          inputFunction( & shoppingData[currentSize]);
-
-          if (shoppingData[currentSize].numberOfItem == 0) {
-            clearConsole();
-            optionMainMenu(option);
-          }
-          currentSize++;
+        if (currentSize == size) {
+          size *= 2;
+          memorryReallocation( & shoppingData, size);
         }
 
+        inputFunction( & shoppingData[currentSize]);
+        currentSize++;
+        break;
+
       case 2:
-      printOutput(shoppingData, currentSize);
+        printOutput(shoppingData, currentSize);
+        break;
 
       default:
-      printf("Choose the correct menu! Press 1 to continue...");
-      scanf("%d", &next);
-      clearConsole();
-      optionMainMenu(option);
+        printf("Choose the correct menu! Press 1 to continue...");
+        clearInputBuffer();
+        break;
+      }
+      if (option != 5) {
+        printf("Press Enter to continue...");
+        clearInputBuffer();
+        getchar();
       }
 
     }
     optionMainMenu(option);
-  }while(option != 0);
-  
+  } while (option != 5);
 
   free(shoppingData);
   shoppingData = NULL;
