@@ -1,6 +1,6 @@
 ## To-C-Shop
 
-Welcome to To-C-Shop! This is a simple console-based shopping list manager implemented in C. This program allows you to efficiently manage your shopping list with options to add items, show the list, and more.
+I create this program and call it To-C-Shop because this is a simple console-based shopping list manager implemented in C & his program allows you to efficiently manage your shopping list with options to add items, show the list, and more.
 
 ## Features
 
@@ -19,8 +19,8 @@ This project utilizes several features of the C programming language:
 
 ## Future Improvements
 
+Some of the features are not implemented yet and still on progress :
 Implement the functions to remove items from the list.
 Implement the search functionality to find specific items.
 Improve the user interface and add more features as needed.
 
-Some of the features are not implemented yet and still on progress.
