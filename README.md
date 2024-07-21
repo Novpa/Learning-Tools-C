@@ -1,6 +1,6 @@
 ## To-C-Shop
 
-I create this program and call it To-C-Shop because this is a simple console-based shopping list manager implemented in C & his program allows you to efficiently manage your shopping list with options to add items, show the list, and more.
+I create this program and call it To-C-Shop because this is a simple console-based shopping list manager implemented in C & this program allows you to efficiently manage your shopping list with options to add items, show the list, and more.
 
 ## Features
 
