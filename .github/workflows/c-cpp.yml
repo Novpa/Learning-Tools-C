@@ -16,6 +16,12 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y build-essential
 
+    - name: Set TERM environment variable
+      run: echo "export TERM=xterm" >> ~/.bashrc
+
+    - name: Source the updated .bashrc
+      run: source ~/.bashrc
+
     - name: Build
       run: make
     
