@@ -8,7 +8,6 @@ I create this program and call it To-C-Shop because this is a simple console-bas
 2. Show list: Display the current items in your shopping list.
 3. Remove items: Functionality to remove or mark items (not implemented yet).
 4. Search list: Functionality to search items (not implemented yet).
-   Exit: Exit the program gracefully.
 
 ## C Language Features Used
 
