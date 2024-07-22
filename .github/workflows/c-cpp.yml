@@ -8,16 +8,25 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: configure
+    
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y autoconf automake build-essential
+
+    - name: Make configure executable
+      run: chmod +x ./configure
+
+    - name: Configure
       run: ./configure
-    - name: make
+    
+    - name: Build
       run: make
-    - name: make check
+    
+    - name: Run Tests
       run: make check
-    - name: make distcheck
+    
+    - name: Distribution Check
       run: make distcheck
