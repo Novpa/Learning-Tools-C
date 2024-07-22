@@ -1,3 +1,6 @@
+#include <stdio.h>
+
+
 //Welcome message function: 
 void printWelcomeMessage() {
     printf("*********************************************************\n");
