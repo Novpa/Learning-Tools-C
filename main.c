@@ -18,7 +18,18 @@ void removeNewline(char * str) {
 
 //Clear console function: 
 void clearConsole() {
-  system("cls");
+
+  #ifdef _WIN32
+    system("cls");
+
+  #elif defined(__unix__) || defined(__APPLE__)
+    system("clear");
+
+  #else
+    // No-op or alternative handling
+
+  #endif
+  
 }
 
 //Welcome message function: 
