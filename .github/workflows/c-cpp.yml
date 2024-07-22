@@ -19,8 +19,8 @@ jobs:
     - name: Build
       run: make
     
-    - name: Run Tests
-      run: make check
+    - name: Run Tests with Timeout
+      run: timeout 5m make check
     
     - name: Distribution Check
       run: make distcheck
